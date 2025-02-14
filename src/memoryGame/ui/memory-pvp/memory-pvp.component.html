@@ -1,0 +1,95 @@
+<!-- memory-pvp.component.html -->
+<main class="min-h-screen bg-base-100 p-4">
+  <div class="max-w-4xl mx-auto">
+    <!-- Game Header with Player Stats -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+      <div class="stats shadow">
+        <div class="stat">
+          <div class="stat-title">Jugador 1</div>
+          <div class="stat-value text-primary text-2xl">
+            @if (salaService.jugador1().name) {
+            {{salaService.jugador1().name}}
+            } @else {
+            Esperando...
+            }
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Jugador 2</div>
+          <div class="stat-value text-secondary text-2xl">
+            @if (salaService.jugador2().name) {
+            {{salaService.jugador2().name}}
+            } @else {
+            Esperando...
+            }
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary w-full md:w-auto" (click)="findRoom()">
+        Buscar Partida
+      </button>
+    </div>
+
+    <!-- Game Status -->
+    <div class="alert shadow-lg mb-8" [class.alert-info]="salaService.estado() === 'ESPERANDO_JUGADOR'"
+      [class.alert-success]="esMiTurno()"
+      [class.alert-warning]="!esMiTurno() && salaService.estado() !== 'ESPERANDO_JUGADOR'">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          class="stroke-current flex-shrink-0 w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div>
+          <h3 class="font-bold">Estado del Juego</h3>
+          <div class="text-xs">
+            @switch (salaService.estado()) {
+            @case ('ESPERANDO_JUGADOR') {
+            Esperando jugador...
+            }
+            @case ('TURNO_P1') {
+            @if (salaService.numeroJugador() === 1) {
+            Tu turno
+            } @else {
+            Turno del jugador 1
+            }
+            }
+            @case ('TURNO_P2') {
+            @if (salaService.numeroJugador() === 2) {
+            Tu turno
+            } @else {
+            Turno del jugador 2
+            }
+            }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Board -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+      @for (card of salaService.tablero(); track $index) {
+      <div class="card-container" [class.cursor-pointer]="esMiTurno() && !salaService.cartasDeshabilitadas()[$index]"
+        [class.opacity-50]="!esMiTurno()"
+        (click)="esMiTurno() && !salaService.cartasDeshabilitadas()[$index] && jugar($index)">
+
+        <div class="card" [class.is-flipped]="$index === salaService.casilla1() || $index === salaService.casilla2()"
+          [class.disabled]="salaService.cartasDeshabilitadas()[$index]">
+
+          <div class="card-face card-front">
+            <img src="carta_volteada.jpg" alt="Card Back" class="w-full h-full object-cover rounded-lg">
+          </div>
+          <div class="card-face card-back">
+            <img [src]="card" alt="Card Front" class="w-full h-full object-cover rounded-lg">
+          </div>
+        </div>
+      </div>
+      }
+
+
+
+    </div>
+  </div>
+</main>

@@ -1,0 +1,76 @@
+<div class="text-center p-4">
+  <!-- Pantalla de carga -->
+  @if (isLoading()) {
+  <div class="flex flex-col items-center justify-center h-screen">
+    <span class="loading loading-spinner loading-lg"></span>
+    <p class="text-lg font-semibold mt-4">Cargando contenido...</p>
+  </div>
+  } @else {
+  <!-- Pantalla del juego -->
+  @if (!isGameOver()) { @if (userHighPoints()){
+
+  <div class="alert mb-4 flex flex-row items-center w-full justify-between">
+    <h3 class="text-xl font-bold">Mejor Partida</h3>
+    <p>Puntos: {{ userHighPoints()?.points }}</p>
+    <p>Cantidad: {{ userHighPoints()?.quantity }}</p>
+  </div>
+
+  }
+
+  <div>
+    <!-- Imagen de la señal -->
+    <img [src]="currentSign()?.imageURL" alt="Seña" class="w-48 mx-auto my-4" />
+    
+    <p class="mb-4">Busca y selecciona la seña correcta:</p>
+    <p class="mb-4">{{ currentSign()?.name }}</p>
+
+    <!-- Información del juego -->
+    <div class="mb-4 grid grid-cols-3 gap-4 text-center">
+      <div>
+        Puntos: <span class="font-bold">{{ points() }}</span>
+      </div>
+      <div>
+        Aciertos: <span class="font-bold">{{ correctGuesses() }}</span>
+      </div>
+      <div>
+        Tiempo: <span class="font-bold">{{ elapsedTime() }}s</span>
+      </div>
+    </div>
+
+    <!-- Input de búsqueda con autocompletado -->
+    <div class="position-relative mx-auto" style="max-width: 300px">
+      <input
+        #searchInput
+        type="text"
+        class="input input-bordered w-full"
+        placeholder="Buscar..."
+        [formControl]="searchControl"
+      />
+      <div
+        *ngIf="filteredItems.length > 0"
+        class="dropdown-menu show position-absolute w-100 bg-base-100 border border-base-300 mt-1"
+        style="z-index: 1; max-height: 200px; overflow-y: auto"
+      >
+        <button
+          *ngFor="let item of filteredItems"
+          type="button"
+          class="dropdown-item text-left flex items-center px-2 py-1 hover:bg-base-200 w-full"
+          (click)="selectItem(item)"
+        >
+          {{ item.name }}
+        </button>
+      </div>
+    </div>
+  </div>
+  } @else {
+  <!-- Juego terminado -->
+  <div>
+    <h2 class="text-2xl font-bold text-red-500">¡Juego Terminado!</h2>
+    <p>Puntos: {{ points() }}</p>
+    <p>Aciertos: {{ correctGuesses() }}</p>
+    <p>Tiempo: {{ elapsedTime() }} segundos</p>
+    <p>Reinicia para volver a jugar.</p>
+    <button class="btn btn-accent mt-4" (click)="resetGame()">Reiniciar</button>
+  </div>
+  } }
+</div>

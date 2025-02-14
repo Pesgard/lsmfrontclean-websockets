@@ -1,0 +1,97 @@
+<div class="hero bg-base-200 min-h-screen">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <!-- Formulario de registro -->
+    <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <form
+        class="card-body"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSumbit()"
+      >
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Nombre</span>
+          </label>
+          <input
+            formControlName="name"
+            type="text"
+            placeholder="Nombre completo"
+            class="input input-bordered"
+            required
+          />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="Correo electrónico"
+            class="input input-bordered"
+            required
+          />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Contraseña</span>
+          </label>
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Contraseña"
+            class="input input-bordered"
+            required
+          />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Confirmar Contraseña</span>
+          </label>
+          <input
+            formControlName="confirmPassword"
+            type="password"
+            placeholder="Confirma tu contraseña"
+            class="input input-bordered"
+            required
+          />
+        </div>
+        <label class="label">
+          <a (click)="goToLogin()" class="label-text-alt link link-hover">
+            ¿Ya tienes una cuenta? Inicia sesión aquí.
+          </a>
+        </label>
+        <div class="form-control mt-6">
+          <button class="btn btn-primary" type="submit">Registrarse</button>
+        </div>
+        @if (errorHandling.isError) {
+        <div role="alert" class="alert alert-error">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>{{ errorHandling.message }}</span>
+        </div>
+        }
+      </form>
+    </div>
+
+    <!-- Texto de bienvenida -->
+    <div class="text-center lg:text-left">
+      <h1 class="text-5xl font-bold">¡Regístrate ahora!</h1>
+      <p class="py-6">
+        Crea una cuenta y comienza a explorar nuestro glosario de Lengua de
+        Señas Mexicana, participa en juegos interactivos y compite en los
+        rankings globales. ¡Es fácil y rápido!
+      </p>
+    </div>
+  </div>
+</div>

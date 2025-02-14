@@ -1,0 +1,61 @@
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-6 text-center">
+    Diccionario de Lengua de Señas Mexicana
+  </h1>
+
+  @if (category.length > 0) {
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    @for (cat of category; track cat.id) {
+    <div
+      class="card w-full bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+    >
+      <figure class="h-56">
+        <img
+          [src]="cat.imageURL"
+          alt="{{ cat.name }}"
+          class="w-full h-full object-cover"
+        />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title text-xl font-semibold">{{ cat.name }}</h2>
+        <p class="text-gray-600">{{ cat.description }}</p>
+        <div class="card-actions justify-end">
+          @if (isLoading()) {
+          <span class="loading loading-sm"></span>
+          }
+          <button class="btn btn-primary btn-sm" (click)="openModal(cat)">
+            Aprender Más
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  } @else {
+  <div class="flex justify-center items-center h-64">
+    <span class="loading loading-spinner loading-lg text-primary"></span>
+  </div>
+  }
+
+  <!-- Modal -->
+  <dialog id="learnMoreModal" class="modal">
+    <form method="dialog" class="modal-box w-11/12 max-w-5xl">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+        ✕
+      </button>
+      <div class="flex">
+        <div class="w-1/2">
+          <img
+            [src]="selectedCat?.imageURL"
+            alt="{{ selectedCat?.name }}"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="w-1/2 p-4">
+          <h2 class="text-2xl font-bold mb-4">{{ selectedCat?.name }}</h2>
+          <p>{{ result() }}</p>
+        </div>
+      </div>
+    </form>
+  </dialog>
+</div>

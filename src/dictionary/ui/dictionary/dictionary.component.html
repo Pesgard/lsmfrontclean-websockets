@@ -1,0 +1,56 @@
+<section class="mx-4">
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs text-md">
+    <ul>
+      <li>
+        <a href="/dashboard" class="gap-2">
+          <lucide-icon [img]="HomeIcon"></lucide-icon>
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="/dashboard/dictionary"> Diccionario </a>
+      </li>
+      <li>
+        <span class="inline-flex items-center gap-2"> Categorias </span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Seccion de Diccionario -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- Card Principal -->
+    <div class="card shadow-md mb-8">
+      <div class="card-body text-center">
+        <h3 class="text-4xl font-bold mb-2">
+          Diccionario de Lenguaje de Señas Mexicana
+        </h3>
+        <p class="text-lg text-gray-500">
+          Explora el fascinante mundo de la comunicación visual y gestual
+        </p>
+      </div>
+    </div>
+
+    <!-- Grid de Categorías -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (category of categories; track $index) {
+      <a [routerLink]="['/dashboard/dictionary/', category.id]">
+        <div
+          class="card bg-base-100 shadow-lg hover:shadow-2xl transition-shadow duration-300"
+        >
+          <div class="card-body">
+            <h2 class="card-title text-2xl flex items-center">
+              <span class="mr-2 text-3xl">{{ category.icon }}</span>
+              {{ category.name }}
+            </h2>
+            <p>{{ category.description }}</p>
+            <button class="btn btn-primary mt-4 w-full">
+              Explorar {{ category.name }}
+            </button>
+          </div>
+        </div>
+      </a>
+      }
+    </div>
+  </div>
+</section>

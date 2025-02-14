@@ -1,0 +1,100 @@
+<main class="min-h-screen bg-base-100 p-4">
+  <h2 class="text-3xl font-bold mb-4 text-center">¡Desafía a tus amigos en Adivina la Secuencia Online!</h2>
+  <div class="max-w-lg mx-auto text-center">
+    <!-- Estadísticas de Jugadores -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+      <div class="stats shadow">
+        <div class="stat">
+          <div class="stat-title">Jugador 1</div>
+          <div class="stat-value text-primary text-2xl">
+            {{ salaService.jugador1().name }}
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Jugador 2</div>
+          <div class="stat-value text-secondary text-2xl">
+            {{ salaService.jugador2().name }}
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary w-full md:w-auto" (click)="findRoom()">
+        Buscar Partida
+      </button>
+    </div>
+
+    @if (bothPlayersPresent()) {
+    <h1 class="text-2xl font-bold mb-4">Adivina la Secuencia</h1>
+
+    @if (showSequence()) {
+    <div class="card bg-base-100 shadow-xl">
+      <figure>
+        <img [src]="salaService.imageURL()[currentSequenceIndex()]" class="w-32 h-32 mx-auto" alt="Carta a adivinar" />
+      </figure>
+    </div>
+    }
+
+    <div class="mt-4">
+
+
+      <input [ngModel]="userInput()" (ngModelChange)="userInput.set($event.toUpperCase())"
+        class="input input-bordered w-full" placeholder="Ingresa tu respuesta" />
+
+
+      <button class="btn btn-success mt-2 w-full" (click)="enviarRespuesta()">
+        Enviar
+      </button>
+    </div>
+
+    <div class="mt-4">
+      @switch (salaService.respuesta()) {
+      @case ('CORRECTA') {
+      <p class="text-green-500 font-bold">✅ ¡Respuesta Correcta!</p>
+      }
+      @case ('INCORRECTA') {
+      <p class="text-red-500 font-bold">❌ Respuesta Incorrecta</p>
+      }
+      @default {
+      <p class="text-gray-500">⌛ Esperando respuesta...</p>
+      }
+      }
+    </div>
+    }
+
+    <!-- Modal de Resultados -->
+    @if (showModal()) {
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-base-100 p-6 rounded-lg shadow-xl max-w-md w-full">
+        <h2 class="text-2xl font-bold mb-4">Resultado del Juego</h2>
+
+        @switch (salaService.estado()) {
+        @case ('VICTORIA_P1') {
+        <p class="text-green-500 font-bold text-xl mb-4">
+          🏆 ¡Ganador: {{salaService.jugador1().name}}!
+        </p>
+        }
+        @case ('VICTORIA_P2') {
+        <p class="text-green-500 font-bold text-xl mb-4">
+          🏆 ¡Ganador: {{salaService.jugador2().name}}!
+        </p>
+        }
+        @case ('ABANDONADO') {
+        <p class="text-red-500 font-bold text-xl mb-4">
+          🚨 El juego ha sido abandonado.
+        </p>
+        }
+        }
+
+        <div class="flex justify-end gap-2">
+          <button class="btn btn-primary" (click)="findRoom()">
+            Nueva Partida
+          </button>
+          <button class="btn" (click)="cerrarModal()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</main>

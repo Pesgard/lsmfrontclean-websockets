@@ -1,0 +1,64 @@
+<div class="hero bg-base-200 min-h-screen">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <!-- Texto de bienvenida -->
+    <div class="text-center lg:text-left">
+      <h1 class="text-5xl font-bold">¡Inicia sesión ahora!</h1>
+      <p class="py-6">
+        Accede a tu cuenta para comenzar a aprender Lengua de Señas Mexicana.
+        Disfruta de juegos interactivos, un glosario completo y compite en los
+        rankings globales.
+      </p>
+    </div>
+
+    <!-- Formulario de login -->
+    <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <form class="card-body" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="email"
+            class="input input-bordered"
+            required
+          />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="password"
+            class="input input-bordered"
+            required
+          />
+          <label class="label">
+            <a href="#" class="label-text-alt link link-hover"
+              >¿Olvidaste tu contraseña?</a
+            >
+          </label>
+          <label class="label">
+            <a (click)="goToRegister()" class="label-text-alt link link-hover">
+              ¿No tienes una cuenta? Regístrate aquí.
+            </a>
+          </label>
+        </div>
+        <div class="form-control mt-6">
+          <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+        </div>
+        @if (errorMessage) {
+        <div class="alert alert-error mt-4">{{ errorMessage }}</div>
+        }
+      </form>
+      <div class="form-control mt-2">
+        <button class="btn btn-ghost underline" (click)="loginAsGuest()">
+          Iniciar como Invitado
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

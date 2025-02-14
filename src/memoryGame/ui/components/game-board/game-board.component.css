@@ -1,0 +1,11 @@
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(
+    4,
+    1fr
+  ); /* Puedes cambiar el número de columnas si lo necesitas */
+  gap: 20px; /* Aumentamos el espacio entre las cartas */
+  max-width: 600px;
+  margin: auto auto;
+}
+

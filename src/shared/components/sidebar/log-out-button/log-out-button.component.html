@@ -1,0 +1,25 @@
+<!-- Open the modal using ID.showModal() method -->
+<button class="btn btn-secondary w-full" onclick="logout_modal.showModal()">
+  Cerrar Sesion
+  <lucide-icon [name]="LogOutIcon" />
+</button>
+<dialog id="logout_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Cerrar Sesión</h3>
+    <p class="py-4">¿Está seguro de que desea cerrar sesión?</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button type="button" (click)="logout()" class="btn btn-primary">
+          Cerrar Sesión
+          <lucide-icon [name]="LogOutIcon" />
+        </button>
+
+        <button class="btn mx-2">
+          Cancelar
+          <lucide-icon [name]="CancelIcon" />
+        </button>
+      </form>
+    </div>
+  </div>
+</dialog>

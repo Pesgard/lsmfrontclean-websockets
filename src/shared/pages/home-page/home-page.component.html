@@ -1,0 +1,100 @@
+<main class="bg-base-200 text-base-content">
+  <!-- Navbar -->
+  <nav class="navbar bg-base-100 shadow-lg">
+    <div class="flex-1">
+      <a class="btn btn-ghost normal-case text-xl">¡Hola!</a>
+    </div>
+    <!-- register / Login -->
+    <div class="flex-none">
+      <button (click)="register()" class="btn btn-ghost">
+        Registrarse
+      </button>
+      <button (click)="login()" class="btn btn-primary">Iniciar Sesión</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section
+    class="hero min-h-[50vh] bg-gradient-to-r from-primary to-secondary text-primary-content justify-center"
+  >
+    <div class="hero-content flex-col lg:flex-row">
+      <lucide-icon
+        [img]="hand"
+        class="max-w-sm rounded-lg shadow-2xl"
+        [size]="48"
+      ></lucide-icon>
+      <div>
+        <h1 class="text-5xl font-bold">Aprende Lengua de Señas Mexicana</h1>
+        <p class="py-4">
+          Nuestro proyecto tiene como objetivo facilitar el aprendizaje de la
+          Lengua de Señas Mexicana a través de herramientas interactivas, juegos
+          educativos y un glosario completo.
+        </p>
+        
+      </div>
+      
+  
+     </div>
+     <a href="https://www.gob.mx/conadis/articulos/lengua-de-senas-mexicana-lsm?idiom=es" target="_blank">
+      <button class="btn btn-secondary mt-72 ">Saber más</button>
+    </a>
+  </section>
+  
+  
+
+  <!-- Features Section -->
+  <section class="py-12 bg-base-100 text-center">
+    <h2 class="text-4xl font-bold mb-6">¿Qué ofrecemos?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
+      <div class="card bg-base-200 shadow-lg">
+        <div class="card-body">
+          <lucide-icon [img]="book_open" [size]="50"></lucide-icon>
+          <h3 class="card-title">Glosario Completo</h3>
+          <p>
+            Encuentra cientos de palabras y sus respectivas señas en video,
+            organizadas por categorías.
+          </p>
+        </div>
+      </div>
+      <div class="card bg-base-200 shadow-lg">
+        <div class="card-body">
+          <lucide-icon [img]="gamepad" [size]="50"></lucide-icon>
+          <h3 class="card-title">Juegos Interactivos</h3>
+          <p>
+            Aprende mientras juegas con nuestros modos interactivos locales y en
+            línea.
+          </p>
+        </div>
+      </div>
+      <div class="card bg-base-200 shadow-lg">
+        <div class="card-body">
+          <lucide-icon [img]="award" [size]="50"></lucide-icon>
+          <h3 class="card-title">Rankings Globales</h3>
+          <p>
+            Compite con otros usuarios y sube posiciones en nuestro ranking
+            mundial.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Footer -->
+    <!--<footer class="footer p-10 bg-neutral text-neutral-content">
+      <div>
+        <span class="footer-title">Proyecto</span>
+        <a class="link link-hover">Acerca de</a>
+        <a class="link link-hover">Contacto</a>
+      </div>
+      <div>
+        <span class="footer-title">Social</span>
+        <div class="grid grid-flow-col gap-4">
+          <a>
+            <lucide-icon [img]="twitter" [size]="24"></lucide-icon>
+          </a>
+          <a><lucide-icon [img]="instagram" [size]="24"></lucide-icon></a>
+          <a><lucide-icon [img]="facebook" [size]="24"></lucide-icon></a>
+        </div>
+      </div>
+    </footer> -->
+</main>

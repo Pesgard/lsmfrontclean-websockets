@@ -1,0 +1,59 @@
+<div class="text-center p-4">
+    <h2 class="text-lg font-bold mb-4">
+      Turno actual: Jugador {{ currentPlayer() + 1 }}
+    </h2>
+  
+    <!-- Puntos de ambos jugadores -->
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div>
+        <h3 class="font-bold text-primary">Jugador 1</h3>
+        <p>Puntos: {{ players[0].points() }}</p>
+        <p>Aciertos: {{ players[0].correctGuesses() }}</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-secondary">Jugador 2</h3>
+        <p>Puntos: {{ players[1].points() }}</p>
+        <p>Aciertos: {{ players[1].correctGuesses() }}</p>
+      </div>
+    </div>
+  
+    <!-- Imagen de la seña -->
+    <img
+      *ngIf="currentSign()"
+      [src]="currentSign()?.imageURL"
+      alt="Seña actual"
+      class="w-48 mx-auto mb-4"
+    />
+  
+    <!-- Input de búsqueda -->
+    <div class="relative mb-4" style="max-width: 300px; margin: auto;">
+      <input
+        type="text"
+        [formControl]="searchControl"
+        class="input input-bordered w-full"
+        placeholder="Escribe tu respuesta..."
+      />
+      <div
+        *ngIf="filteredItems.length > 0"
+        class="absolute bg-white border w-full mt-1 max-h-48 overflow-y-auto"
+      >
+        <button
+          *ngFor="let item of filteredItems"
+          (click)="selectItem(item)"
+          class="block w-full text-left px-2 py-1 hover:bg-gray-100"
+        >
+          {{ item.name }}
+        </button>
+      </div>
+    </div>
+  
+    <!-- Mensaje de juego terminado -->
+    <div *ngIf="isGameOver()" class="mt-4">
+      <h2 class="text-xl font-bold text-red-500">¡Juego Terminado!</h2>
+      <p>Pulsa "Reiniciar" para volver a jugar.</p>
+    </div>
+  
+    <!-- Botones -->
+    <button class="btn btn-primary mt-4" (click)="resetGame()">Reiniciar</button>
+  </div>
+  

@@ -1,0 +1,96 @@
+<section class="mx-4">
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs text-md">
+    <ul>
+      <li>
+        <a href="/dashboard" class="gap-2">
+          <lucide-icon [img]="HomeIcon"></lucide-icon>
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="/dashboard/profile"> Profile </a>
+      </li>
+      <li>
+        <span class="inline-flex items-center gap-2"> Settings </span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mx-auto rounded-lg shadow-md p-6">
+    <!-- Sección de Perfil -->
+    <h2 class="text-2xl font-bold mb-4">Perfil</h2>
+
+    <div class="flex items-center gap-4 mb-6">
+      <div class="avatar placeholder">
+        <div class="bg-neutral text-neutral-content w-24 rounded-full">
+          <span class="text-3xl">{{ userAvatar }}</span>
+        </div>
+      </div>
+      <div>
+        <div class="form-control mb-2">
+          <label class="label">
+            <span class="label-text font-semibold">Nombre</span>
+          </label>
+          <input
+            type="text"
+            placeholder="John Doe"
+            class="input input-bordered w-full"
+            [value]="userData.name"
+          />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">Email</span>
+          </label>
+          <input
+            type="email"
+            placeholder="example@example.com"
+            class="input input-bordered w-full"
+            [value]="userData.email"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Cambio de Contraseña -->
+    <h3 class="text-xl font-bold mb-4 mt-6">Cambio de Contraseña</h3>
+
+    <div class="form-control mb-4">
+      <label class="label">
+        <span class="label-text font-semibold">Contraseña Actual</span>
+      </label>
+      <input
+        type="password"
+        placeholder="••••••••"
+        class="input input-bordered w-full"
+      />
+    </div>
+
+    <div class="form-control mb-4">
+      <label class="label">
+        <span class="label-text font-semibold">Nueva Contraseña</span>
+      </label>
+      <input
+        type="password"
+        placeholder="••••••••"
+        class="input input-bordered w-full"
+      />
+    </div>
+
+    <div class="form-control mb-6">
+      <label class="label">
+        <span class="label-text font-semibold">Confirmar Nueva Contraseña</span>
+      </label>
+      <input
+        type="password"
+        placeholder="••••••••"
+        class="input input-bordered w-full"
+      />
+    </div>
+
+    <div class="flex justify-end">
+      <button class="btn btn-primary">Guardar Cambios</button>
+    </div>
+  </div>
+</section>

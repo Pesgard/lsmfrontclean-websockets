@@ -1,0 +1,34 @@
+<aside class="drawer lg:drawer-open">
+  <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col items-center justify-center">
+    <!-- Page content here -->
+    <menu class="navbar bg-base-200 lg:hidden">
+      <label for="my-drawer-2" class="btn btn-ghost drawer-button lg:hidden">
+        <lucide-icon [img]="MenuIcon" />
+      </label>
+
+      <h2 class="text-lg font-bold">LSM Web</h2>
+    </menu>
+
+    <main class="w-full h-full">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  <nav class="drawer-side">
+    <label
+      for="my-drawer-2"
+      aria-label="close sidebar"
+      class="drawer-overlay"
+    ></label>
+    <ul
+      class="menu bg-base-200 text-base-content min-h-full w-80 p-4 flex flex-col"
+    >
+      <app-menu-items />
+      <div class="mt-auto">
+        <app-profile-info />
+        <div class="divider"></div>
+        <app-log-out-button />
+      </div>
+    </ul>
+  </nav>
+</aside>

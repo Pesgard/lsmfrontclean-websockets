@@ -1,0 +1,24 @@
+@if (isLoading) {
+<div class="w-full flex items-center justify-center">
+  <span class="loading loading-spinner loading-lg"></span>
+</div>
+} @else {
+<li>
+  <a href="/dashboard/profile">
+    <div class="avatar placeholder">
+      <div class="bg-neutral text-neutral-content w-8 rounded-full">
+        <span>{{ userAvatar }}</span>
+      </div>
+    </div>
+    <div class="flex justify-between w-full">
+      <div class="flex justify-center space-x-2">
+        <div class="flex justify-start flex-col items-start">
+          <p class="cursor-pointer text-sm leading-5">{{ userData.name }}</p>
+          <p class="cursor-pointer text-xs leading-3">{{ userData.email }}</p>
+        </div>
+      </div>
+      <lucide-icon [img]="SettingsIcon" />
+    </div>
+  </a>
+</li>
+}
